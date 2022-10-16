@@ -1,5 +1,5 @@
 #  Installation
 
- - php artisancutcode_store:install
+ - php artisan cutcode_store:install
 
 # Deploy
