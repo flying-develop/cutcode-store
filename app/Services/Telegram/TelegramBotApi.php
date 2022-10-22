@@ -2,7 +2,7 @@
 
 namespace App\Services\Telegram;
 
-use Http\Client\Exception;
+use App\Services\Telegram\Exceptions\TelegramBotApiException;
 use Illuminate\Support\Facades\Http;
 
 class TelegramBotApi
@@ -16,10 +16,12 @@ class TelegramBotApi
                 'chat_id' => $chatId,
                 'text' => $text
             ]);
-        } catch (Exception $e) {
+        } catch (\Throwable $e) {
+            report(new TelegramBotApiException($e->getMessage()));
             return false;
         }
 
         return true;
+
     }
 }
